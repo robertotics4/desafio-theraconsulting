@@ -16,6 +16,18 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "resolveJsonModule": true,
+    "paths": {
+      "@app/*": [
+        "src/app/*"
+      ],
+      "@prismaOrm/*": [
+        "src/prismaOrm/*"
+      ],
+      "@core/*": [
+        "src/@core/*"
+      ]
+    },
   }
 }
