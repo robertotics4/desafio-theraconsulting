@@ -6,6 +6,7 @@ import {
   UpdateProductUseCase,
 } from '@core/application';
 import { ProductController } from './product.controller';
+import { ProductMapper } from '@core/domain';
 
 @Module({
   imports: [],
@@ -15,6 +16,7 @@ import { ProductController } from './product.controller';
     ListProductsUseCase,
     UpdateProductUseCase,
     DeleteProductUseCase,
+    ProductMapper,
   ],
 })
 export class ProductModule {}

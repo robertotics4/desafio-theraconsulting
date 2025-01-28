@@ -50,7 +50,7 @@
   - [x] Calcular `total_pedido`.
   - [x] Verificar disponibilidade no estoque.
   - [x] Atualizar o estoque após conclusão do pedido.
-  - [ ] Alterar status do pedido (Pendente, Concluído, Cancelado).
+  - [x] Alterar status do pedido (Pendente, Concluído, Cancelado).
 
 #### **Repository**
 - [x] Implementar manipulação do banco:

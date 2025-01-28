@@ -1,11 +1,14 @@
 import { CreateOrUpdateProductDto } from '@app/product/dtos';
-import { IUpdateProductUseCase, Product, ProductCategory } from '@core/domain';
+import { IUpdateProductUseCase, Product, ProductMapper } from '@core/domain';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '@prismaOrm/prisma.service';
 
 @Injectable()
 export class UpdateProductUseCase implements IUpdateProductUseCase {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(
+    private readonly prismaService: PrismaService,
+    private readonly productMapper: ProductMapper,
+  ) {}
 
   async execute(id: string, dto: CreateOrUpdateProductDto): Promise<Product> {
     const product = await this.prismaService.product.findUnique({
@@ -21,10 +24,6 @@ export class UpdateProductUseCase implements IUpdateProductUseCase {
       data: dto,
     });
 
-    return {
-      ...updatedProduct,
-      category: updatedProduct.category as ProductCategory,
-      price: updatedProduct.price.toNumber(),
-    };
+    return this.productMapper.mapPrismaToDomain(updatedProduct);
   }
 }
