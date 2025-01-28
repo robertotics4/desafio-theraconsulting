@@ -1,9 +1,10 @@
 version: '3.8'
 
 services:
-  postgres:
+  postgresdb:
     image: postgres:14
     container_name: postgres_desafio_thera
+    restart: unless-stopped
     environment:
       POSTGRES_USER: thera_user
       POSTGRES_PASSWORD: thera_password
@@ -14,20 +15,29 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - app_network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -h postgresdb -U thera_user" ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
 
   app:
+    container_name: app_desafio_thera
+    environment:
+      DATABASE_URL: postgres://thera_user:thera_password@postgresdb:5432/postgres_thera
+      SERVER_PORT: 3000
+      JWT_HASH_MD5: 5ef41c09829700e022099de37b96bff8
+    restart: unless-stopped
+    depends_on:
+      postgresdb:
+        condition: service_healthy
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: app_desafio_thera
-    environment:
-      DATABASE_URL: postgres://thera_user:thera_password@postgres:5432/postgres_thera
-      SERVER_PORT: 3000
-      JWT_HASH_MD5: 5ef41c09829700e022099de37b96bff8
     ports:
       - "3000:3000"
-    depends_on:
-      - postgres
+    links:
+      - postgresdb
     networks:
       - app_network
     command: >
