@@ -60,15 +60,15 @@
 ---
 
 ### **4. Middleware**
-- [ ] Criar middleware para log de requisições:
-  - [ ] Registrar o método HTTP, endpoint, e data/hora.
+- [x] Criar middleware para log de requisições:
+  - [x] Registrar o método HTTP, endpoint, e data/hora.
 
 ---
 
 ### **5. Autenticação (Extra)**
-- [ ] Implementar autenticação com JWT.
-  - [ ] Rota para login.
-  - [ ] Middleware para proteger rotas.
+- [x] Implementar autenticação com JWT.
+  - [x] Rota para login.
+  - [x] Middleware para proteger rotas.
 
 ---
 
