@@ -12,9 +12,10 @@ import { AuthModule } from './auth/auth.module';
 import { AuthGuard } from './auth/auth.guard';
 import { ProductModule } from './product/product.module';
 import { LogRequestMiddleware } from './middlewares';
+import { OrderModule } from './order/order.module';
 
 @Module({
-  imports: [PrismaModule, UserModule, AuthModule, ProductModule],
+  imports: [PrismaModule, UserModule, AuthModule, ProductModule, OrderModule],
   controllers: [AppController],
   providers: [
     AppService,

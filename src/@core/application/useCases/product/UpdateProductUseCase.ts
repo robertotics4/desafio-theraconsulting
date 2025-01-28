@@ -1,7 +1,6 @@
 import { CreateOrUpdateProductDto } from '@app/product/dtos';
 import { IUpdateProductUseCase, Product, ProductCategory } from '@core/domain';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Decimal } from '@prisma/client/runtime/library';
 import { PrismaService } from '@prismaOrm/prisma.service';
 
 @Injectable()
@@ -25,7 +24,7 @@ export class UpdateProductUseCase implements IUpdateProductUseCase {
     return {
       ...updatedProduct,
       category: updatedProduct.category as ProductCategory,
-      price: (updatedProduct.price as Decimal).toNumber(),
+      price: updatedProduct.price.toNumber(),
     };
   }
 }

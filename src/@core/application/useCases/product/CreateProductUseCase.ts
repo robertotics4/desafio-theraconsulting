@@ -1,7 +1,6 @@
 import { CreateOrUpdateProductDto } from '@app/product/dtos';
 import { ICreateProductUseCase, Product, ProductCategory } from '@core/domain';
 import { Injectable } from '@nestjs/common';
-import { Decimal } from '@prisma/client/runtime/library';
 import { PrismaService } from '@prismaOrm/prisma.service';
 
 @Injectable()
@@ -14,7 +13,7 @@ export class CreateProductUseCase implements ICreateProductUseCase {
     return {
       ...product,
       category: product.category as ProductCategory,
-      price: (product.price as Decimal).toNumber(),
+      price: product.price.toNumber(),
     };
   }
 }

@@ -11,7 +11,6 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { Decimal } from '@prisma/client/runtime/library';
 import { PrismaService } from '@prismaOrm/prisma.service';
 
 @Injectable()
@@ -45,7 +44,7 @@ export class CreateOrderUseCase implements ICreateOrderUseCase {
             product: {
               ...productFound,
               category: productFound.category as ProductCategory,
-              price: (productFound.price as Decimal).toNumber(),
+              price: productFound.price.toNumber(),
             },
           });
 
@@ -59,8 +58,12 @@ export class CreateOrderUseCase implements ICreateOrderUseCase {
         const order = await tx.order.create({
           data: {
             totalOrder,
+            status: 'PENDENTE',
             products: {
-              connect: validatedProducts.map((vp) => ({ id: vp.product.id })),
+              create: validatedProducts.map(({ productId, quantity }) => ({
+                productId,
+                quantity,
+              })),
             },
           },
           include: { products: true },
@@ -68,7 +71,7 @@ export class CreateOrderUseCase implements ICreateOrderUseCase {
 
         return {
           ...order,
-          totalOrder: (order.totalOrder as Decimal).toNumber(),
+          totalOrder: order.totalOrder.toNumber(),
           status: order.status as OrderStatus,
         };
       } catch (error) {
