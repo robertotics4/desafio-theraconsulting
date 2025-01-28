@@ -41,9 +41,9 @@
 
 ### **3. Funcionalidades - Pedidos**
 #### **Controller**
-- [ ] Criar endpoints para:
+- [x] Criar endpoints para:
   - [x] Criar um pedido.
-  - [ ] Listar pedidos.
+  - [x] Listar pedidos.
 
 #### **Service**
 - [ ] Implementar regras de negócio:
