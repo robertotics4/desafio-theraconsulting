@@ -6,7 +6,7 @@ export class User {
   createdAt: Date;
   updatedAt: Date;
 
-  constructor(user: Omit<User, 'id' | 'createdAt' | 'updatedAt'>) {
-    Object.assign(this, user);
+  constructor(data: Omit<User, 'id' | 'createdAt' | 'updatedAt'>) {
+    Object.assign(this, data);
   }
 }

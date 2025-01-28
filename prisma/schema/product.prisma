@@ -4,9 +4,9 @@ model Product {
   category      String   @unique @db.VarChar(255)
   price         Decimal  @db.Decimal(10, 2)
   description   String?  @db.Text
+  stockQuantity Int
   createdAt     DateTime @default(now()) @db.Timestamp(6)
   updatedAt     DateTime @updatedAt @db.Timestamp(6)
-  stockQuantity Int
 
   @@index([name])
   @@map("products")
