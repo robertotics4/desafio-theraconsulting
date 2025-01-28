@@ -31,7 +31,7 @@ services:
     networks:
       - app_network
     command: >
-      sh -c " npx prisma migrate deploy && node src/main.js "
+      sh -c " npx prisma migrate deploy && node dist/src/main.js "
 
 networks:
   app_network:
