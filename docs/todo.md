@@ -94,9 +94,9 @@
 ---
 
 ## 🛠️ Refinamento
-- [ ] Revisar o código para aderência aos princípios do SOLID.
+- [x] Revisar o código para aderência aos princípios do SOLID.
 - [ ] Testar manualmente todas as funcionalidades da API.
-- [ ] Melhorar mensagens de erro e validações.
+- [x] Melhorar mensagens de erro e validações.
 
 ---
 

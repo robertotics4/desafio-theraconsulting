@@ -1,7 +1,6 @@
 import { OrderProduct } from '@core/domain';
 import { ApiProperty } from '@nestjs/swagger';
-import { Type } from 'class-transformer';
-import { IsArray, ValidateNested } from 'class-validator';
+import { IsArray } from 'class-validator';
 
 export abstract class CreateOrderDto {
   @ApiProperty({
