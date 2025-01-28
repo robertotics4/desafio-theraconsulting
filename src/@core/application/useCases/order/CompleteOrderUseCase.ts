@@ -1,4 +1,4 @@
-import { ICompleteOrderUseCase, Order } from '@core/domain';
+import { ICompleteOrderUseCase, Order, OrderMapper } from '@core/domain';
 import {
   BadRequestException,
   Injectable,
@@ -9,7 +9,10 @@ import { PrismaService } from '@prismaOrm/prisma.service';
 
 @Injectable()
 export class CompleteOrderUseCase implements ICompleteOrderUseCase {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(
+    private readonly prismaService: PrismaService,
+    private readonly orderMapper: OrderMapper,
+  ) {}
 
   async execute(id: string): Promise<Order> {
     const orderFound = await this.prismaService.order.findUnique({
@@ -45,6 +48,6 @@ export class CompleteOrderUseCase implements ICompleteOrderUseCase {
       });
     });
 
-    return updatedOrder as any;
+    return this.orderMapper.mapPrismaToDomain(updatedOrder);
   }
 }

@@ -6,6 +6,7 @@ import {
   CreateOrderUseCase,
   ListOrdersUseCase,
 } from '@core/application';
+import { OrderMapper } from '@core/domain';
 
 @Module({
   imports: [],
@@ -15,6 +16,7 @@ import {
     ListOrdersUseCase,
     CompleteOrderUseCase,
     CancelOrderUseCase,
+    OrderMapper,
   ],
 })
 export class OrderModule {}

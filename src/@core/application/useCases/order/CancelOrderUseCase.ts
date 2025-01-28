@@ -1,4 +1,4 @@
-import { ICancelOrderUseCase, Order } from '@core/domain';
+import { ICancelOrderUseCase, Order, OrderMapper } from '@core/domain';
 import {
   BadRequestException,
   Injectable,
@@ -9,7 +9,10 @@ import { PrismaService } from '@prismaOrm/prisma.service';
 
 @Injectable()
 export class CancelOrderUseCase implements ICancelOrderUseCase {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(
+    private readonly prismaService: PrismaService,
+    private readonly orderMapper: OrderMapper,
+  ) {}
 
   async execute(id: string): Promise<Order> {
     const orderFound = await this.prismaService.order.findUnique({
@@ -27,9 +30,11 @@ export class CancelOrderUseCase implements ICancelOrderUseCase {
       );
     }
 
-    return (await this.prismaService.order.update({
+    const updatedOrder = await this.prismaService.order.update({
       where: { id },
       data: { status: 'CANCELADO' },
-    })) as any;
+    });
+
+    return this.orderMapper.mapPrismaToDomain(updatedOrder);
   }
 }

@@ -1,5 +1,5 @@
 import { CreateOrderDto } from '@app/order/dtos';
-import { ICreateOrderUseCase, Order, OrderStatus } from '@core/domain';
+import { ICreateOrderUseCase, Order, OrderMapper } from '@core/domain';
 import {
   BadRequestException,
   Injectable,
@@ -9,7 +9,10 @@ import { PrismaService } from '@prismaOrm/prisma.service';
 
 @Injectable()
 export class CreateOrderUseCase implements ICreateOrderUseCase {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(
+    private readonly prismaService: PrismaService,
+    private readonly orderMapper: OrderMapper,
+  ) {}
 
   async execute({ orderProducts }: CreateOrderDto): Promise<Order> {
     const productIds = orderProducts.map((p) => p.productId);
@@ -56,10 +59,6 @@ export class CreateOrderUseCase implements ICreateOrderUseCase {
       },
     });
 
-    return {
-      ...createdOrder,
-      totalOrder: createdOrder.totalOrder.toNumber(),
-      status: createdOrder.status as OrderStatus,
-    };
+    return this.orderMapper.mapPrismaToDomain(createdOrder);
   }
 }
