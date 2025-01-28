@@ -1,4 +1,4 @@
-import { CreateProductDto } from '@app/product/dtos';
+import { CreateOrUpdateProductDto } from '@app/product/dtos';
 import { ICreateProductUseCase, Product, ProductCategory } from '@core/domain';
 import { Injectable } from '@nestjs/common';
 import { Decimal } from '@prisma/client/runtime/library';
@@ -8,7 +8,7 @@ import { PrismaService } from '@prismaOrm/prisma.service';
 export class CreateProductUseCase implements ICreateProductUseCase {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async execute(dto: CreateProductDto): Promise<Product> {
+  async execute(dto: CreateOrUpdateProductDto): Promise<Product> {
     const product = await this.prismaService.product.create({ data: dto });
 
     return {

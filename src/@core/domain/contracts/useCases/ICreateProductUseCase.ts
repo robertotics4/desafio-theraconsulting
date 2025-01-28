@@ -1,6 +1,6 @@
 import { Product } from '../../entities';
-import { CreateProductDto } from '@app/product/dtos';
+import { CreateOrUpdateProductDto } from '@app/product/dtos';
 
 export interface ICreateProductUseCase {
-  execute(dto: CreateProductDto): Promise<Product>;
+  execute(dto: CreateOrUpdateProductDto): Promise<Product>;
 }

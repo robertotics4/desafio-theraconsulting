@@ -10,7 +10,7 @@ import {
 } from 'class-validator';
 import { ProductCategory } from '@core/domain';
 
-export abstract class CreateProductDto {
+export abstract class CreateOrUpdateProductDto {
   @ApiProperty({ description: 'Nome do produto', example: 'Camiseta' })
   @IsString()
   name: string;

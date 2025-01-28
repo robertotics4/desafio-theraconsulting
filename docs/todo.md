@@ -21,19 +21,19 @@
 #### **Controller**
 - [ ] Criar endpoints para:
   - [x] Criar um produto.
-  - [ ] Listar produtos.
+  - [x] Listar produtos.
   - [ ] Editar produto.
   - [ ] Deletar produto.
 
 #### **Service**
 - [ ] Implementar regras de negócio:
-  - [ ] Validação dos campos obrigatórios.
+  - [x] Validação dos campos obrigatórios.
   - [ ] Atualizar estoque.
   
 #### **Repository**
-- [ ] Implementar manipulação do banco:
-  - [ ] Inserção.
-  - [ ] Consulta.
+- [x] Implementar manipulação do banco:
+  - [x] Inserção.
+  - [x] Consulta.
   - [ ] Atualização.
   - [ ] Remoção.
 
