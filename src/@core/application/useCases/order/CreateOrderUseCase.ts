@@ -4,7 +4,6 @@ import {
   Order,
   OrderProduct,
   OrderStatus,
-  ProductCategory,
 } from '@core/domain';
 import {
   BadRequestException,
@@ -18,66 +17,64 @@ export class CreateOrderUseCase implements ICreateOrderUseCase {
   constructor(private readonly prismaService: PrismaService) {}
 
   async execute({ orderProducts }: CreateOrderDto): Promise<Order> {
-    return this.prismaService.$transaction(async (tx) => {
-      try {
-        const validatedProducts: OrderProduct[] = [];
+    const productIds = orderProducts.map((p) => p.productId);
 
-        for await (const orderProduct of orderProducts) {
-          const productFound = await tx.product.findUnique({
-            where: { id: orderProduct.productId },
-          });
+    const productData = await this.prismaService.product.findMany({
+      where: { id: { in: productIds } },
+      select: { id: true, stockQuantity: true, price: true, name: true },
+    });
 
-          if (!productFound) {
-            throw new NotFoundException(
-              `O produto de id ${orderProduct.productId} não foi encontrado`,
-            );
-          }
+    for (const { productId, quantity } of orderProducts) {
+      const product = productData.find((p) => p.id === productId);
 
-          if (orderProduct.quantity > productFound.stockQuantity) {
-            throw new BadRequestException(
-              `O produto '${productFound.name}' não tem estoque suficiente para o seu pedido`,
-            );
-          }
+      if (!product) {
+        throw new NotFoundException(
+          `Produto com ID ${productId} não encontrado.`,
+        );
+      }
 
-          validatedProducts.push({
-            ...orderProduct,
-            product: {
-              ...productFound,
-              category: productFound.category as ProductCategory,
-              price: productFound.price.toNumber(),
-            },
-          });
+      if (product.stockQuantity < quantity) {
+        throw new BadRequestException(
+          `Estoque insuficiente para o produto "${product.name}". Quantidade disponível: ${product.stockQuantity}.`,
+        );
+      }
+    }
 
-          await tx.product.update({
-            where: { id: productFound.id },
-            data: { stockQuantity: { decrement: orderProduct.quantity } },
-          });
-        }
+    const totalOrder = this.calcTotal(orderProducts);
 
-        const totalOrder = this.calcTotal(validatedProducts);
-        const order = await tx.order.create({
+    const createdOrder = await this.prismaService.$transaction(async (tx) => {
+      const order = await tx.order.create({
+        data: {
+          totalOrder,
+          status: 'PENDENTE',
+          products: {
+            create: orderProducts.map(({ productId, quantity }) => ({
+              productId,
+              quantity,
+            })),
+          },
+        },
+      });
+
+      for (const { productId, quantity } of orderProducts) {
+        await tx.product.update({
+          where: { id: productId },
           data: {
-            totalOrder,
-            status: 'PENDENTE',
-            products: {
-              create: validatedProducts.map(({ productId, quantity }) => ({
-                productId,
-                quantity,
-              })),
+            stockQuantity: {
+              decrement: quantity,
             },
           },
-          include: { products: true },
         });
-
-        return {
-          ...order,
-          totalOrder: order.totalOrder.toNumber(),
-          status: order.status as OrderStatus,
-        };
-      } catch (error) {
-        throw error;
       }
+
+      return order;
     });
+
+    return {
+      ...createdOrder,
+      totalOrder: createdOrder.totalOrder.toNumber(),
+      status: createdOrder.status as OrderStatus,
+    };
   }
 
   private calcTotal(orderProducts: OrderProduct[]): number {
