@@ -15,7 +15,7 @@ enum ProductCategory {
 model Product {
   id            String          @id @default(uuid()) @db.Uuid
   name          String          @db.VarChar(255)
-  category      ProductCategory @unique
+  category      ProductCategory
   price         Decimal         @db.Decimal(10, 2)
   description   String?         @db.Text
   stockQuantity Int

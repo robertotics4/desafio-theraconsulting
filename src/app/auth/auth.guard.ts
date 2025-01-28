@@ -38,8 +38,6 @@ export class AuthGuard implements CanActivate {
       throw new UnauthorizedException();
     }
 
-    console.log({ token });
-
     try {
       const { sub: userId, ...rest } = jwt.verify(
         token,
@@ -56,7 +54,6 @@ export class AuthGuard implements CanActivate {
 
       request.user = { id: userId };
     } catch (error) {
-      console.log({ error });
       throw new UnauthorizedException('Token inválido');
     }
 

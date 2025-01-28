@@ -11,6 +11,9 @@ CREATE TYPE "OrderStatus" AS ENUM ('PENDENTE', 'CONCLUIDO', 'CANCELADO');
 -- CreateEnum
 CREATE TYPE "ProductCategory" AS ENUM ('ELETRONICOS', 'ROUPAS', 'ELETRODOMESTICOS', 'LIVROS', 'MERCEARIA', 'BELEZA', 'ESPORTES', 'BRINQUEDOS', 'MOVEIS', 'AUTOMOTIVO', 'OUTROS');
 
+-- DropIndex
+DROP INDEX "products_category_key";
+
 -- AlterTable
 ALTER TABLE "orders" DROP COLUMN "status",
 ADD COLUMN     "status" "OrderStatus" NOT NULL DEFAULT 'PENDENTE';
@@ -18,6 +21,3 @@ ADD COLUMN     "status" "OrderStatus" NOT NULL DEFAULT 'PENDENTE';
 -- AlterTable
 ALTER TABLE "products" DROP COLUMN "category",
 ADD COLUMN     "category" "ProductCategory" NOT NULL;
-
--- CreateIndex
-CREATE UNIQUE INDEX "products_category_key" ON "products"("category");

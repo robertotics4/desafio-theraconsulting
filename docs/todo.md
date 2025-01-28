@@ -20,7 +20,7 @@
 ### **2. Funcionalidades - Produtos**
 #### **Controller**
 - [ ] Criar endpoints para:
-  - [ ] Criar um produto.
+  - [x] Criar um produto.
   - [ ] Listar produtos.
   - [ ] Editar produto.
   - [ ] Deletar produto.
