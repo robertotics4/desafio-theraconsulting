@@ -10,10 +10,10 @@
 ## 🏗️ Desenvolvimento
 
 ### **1. Configurações Iniciais**
-- [ ] Criar um novo projeto NestJS.
-- [ ] Configurar o banco de dados (relacional ou não relacional).
-- [ ] Criar a estrutura inicial de camadas (Controller, Service, Repository).
-- [ ] Configurar e testar conexão com o banco de dados.
+- [x] Criar um novo projeto NestJS.
+- [x] Configurar o banco de dados (relacional ou não relacional).
+- [x] Criar a estrutura inicial de camadas (Controller, Service, Repository).
+- [x] Configurar e testar conexão com o banco de dados.
 
 ---
 
