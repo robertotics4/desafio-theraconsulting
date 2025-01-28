@@ -1,10 +1,5 @@
 import { CreateOrderDto } from '@app/order/dtos';
-import {
-  ICreateOrderUseCase,
-  Order,
-  OrderProduct,
-  OrderStatus,
-} from '@core/domain';
+import { ICreateOrderUseCase, Order, OrderStatus } from '@core/domain';
 import {
   BadRequestException,
   Injectable,
@@ -40,7 +35,13 @@ export class CreateOrderUseCase implements ICreateOrderUseCase {
       }
     }
 
-    const totalOrder = this.calcTotal(orderProducts);
+    const totalOrder = orderProducts.reduce(
+      (total, { productId, quantity }) => {
+        const product = productData.find((p) => p.id === productId)!;
+        return total + product.price.toNumber() * quantity;
+      },
+      0,
+    );
 
     const createdOrder = await this.prismaService.$transaction(async (tx) => {
       const order = await tx.order.create({
@@ -75,13 +76,5 @@ export class CreateOrderUseCase implements ICreateOrderUseCase {
       totalOrder: createdOrder.totalOrder.toNumber(),
       status: createdOrder.status as OrderStatus,
     };
-  }
-
-  private calcTotal(orderProducts: OrderProduct[]): number {
-    return orderProducts.reduce(
-      (total, orderProduct) =>
-        total + orderProduct.product.price * orderProduct.quantity,
-      0,
-    );
   }
 }

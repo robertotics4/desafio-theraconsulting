@@ -42,19 +42,19 @@
 ### **3. Funcionalidades - Pedidos**
 #### **Controller**
 - [ ] Criar endpoints para:
-  - [ ] Criar um pedido.
+  - [x] Criar um pedido.
   - [ ] Listar pedidos.
 
 #### **Service**
 - [ ] Implementar regras de negócio:
-  - [ ] Calcular `total_pedido`.
-  - [ ] Verificar disponibilidade no estoque.
-  - [ ] Atualizar o estoque após conclusão do pedido.
+  - [x] Calcular `total_pedido`.
+  - [x] Verificar disponibilidade no estoque.
+  - [x] Atualizar o estoque após conclusão do pedido.
   - [ ] Alterar status do pedido (Pendente, Concluído, Cancelado).
 
 #### **Repository**
 - [ ] Implementar manipulação do banco:
-  - [ ] Inserção.
+  - [x] Inserção.
   - [ ] Consulta.
 
 ---
