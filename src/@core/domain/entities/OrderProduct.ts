@@ -1,7 +1,7 @@
 import { Order } from './Order';
 import { Product } from './Product';
 
-export class ProductOrder {
+export class OrderProduct {
   id: string;
   quantity: number;
   productId: string;
@@ -11,7 +11,7 @@ export class ProductOrder {
   createdAt: Date;
   updatedAt: Date;
 
-  constructor(data: Omit<ProductOrder, 'id' | 'createdAt' | 'updatedAt'>) {
+  constructor(data: Omit<OrderProduct, 'id' | 'createdAt' | 'updatedAt'>) {
     Object.assign(this, data);
   }
 }

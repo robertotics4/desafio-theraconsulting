@@ -8,7 +8,7 @@ model Product {
   createdAt     DateTime @default(now()) @db.Timestamp(6)
   updatedAt     DateTime @updatedAt @db.Timestamp(6)
 
-  productOrder ProductOrder[]
+  productOrder OrderProduct[]
 
   @@index([name])
   @@map("products")
