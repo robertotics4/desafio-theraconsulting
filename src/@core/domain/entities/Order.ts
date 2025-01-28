@@ -10,7 +10,7 @@ export class Order {
   id: string;
   totalOrder: number;
   status: OrderStatus;
-  products: OrderProduct[];
+  products?: OrderProduct[];
   createdAt: Date;
   updatedAt: Date;
 

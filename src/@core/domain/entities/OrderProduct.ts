@@ -6,8 +6,8 @@ export class OrderProduct {
   quantity: number;
   productId: string;
   orderId: string;
-  product: Product;
-  order: Order;
+  product?: Product;
+  order?: Order;
   createdAt: Date;
   updatedAt: Date;
 
