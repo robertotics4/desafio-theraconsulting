@@ -11,7 +11,7 @@ model Order {
   createdAt  DateTime    @default(now()) @db.Timestamp(6)
   updatedAt  DateTime    @updatedAt @db.Timestamp(6)
 
-  products OrderProduct[]
+  orderProducts OrderProduct[]
 
   @@map("orders")
 }

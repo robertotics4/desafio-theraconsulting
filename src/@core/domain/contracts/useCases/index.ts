@@ -5,3 +5,4 @@ export * from './IListProductsUseCase';
 export * from './IUpdateProductUseCase';
 export * from './IDeleteProductUseCase';
 export * from './ICreateOrderUseCase';
+export * from './IListOrdersUseCase';

@@ -48,7 +48,7 @@ export class CreateOrderUseCase implements ICreateOrderUseCase {
         data: {
           totalOrder,
           status: 'PENDENTE',
-          products: {
+          orderProducts: {
             create: orderProducts.map(({ productId, quantity }) => ({
               productId,
               quantity,
