@@ -8,7 +8,7 @@ import { Reflector } from '@nestjs/core';
 import { Request } from 'express';
 import * as jwt from 'jsonwebtoken';
 import { IS_PUBLIC_KEY } from './decorators/public.decorator';
-import { UserRepository } from '@core/domain';
+import { PrismaService } from '@prismaOrm/prisma.service';
 
 interface IPayload {
   sub: string;
@@ -17,7 +17,7 @@ interface IPayload {
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(
-    private readonly userRepository: UserRepository,
+    private readonly prismaService: PrismaService,
     private readonly reflector: Reflector,
   ) {}
 
@@ -46,11 +46,9 @@ export class AuthGuard implements CanActivate {
         process.env.JWT_HASH_MD5 as string,
       ) as IPayload;
 
-      console.log({ userId, rest });
-
-      const user = await this.userRepository.findOne({ id: userId });
-
-      console.log({ user });
+      const user = await this.prismaService.user.findUnique({
+        where: { id: userId },
+      });
 
       if (!user) {
         throw new UnauthorizedException('Usuário não encontrado');

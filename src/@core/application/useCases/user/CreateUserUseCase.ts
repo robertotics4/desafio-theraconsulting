@@ -1,24 +1,20 @@
 import { CreateUserDto } from '@app/user/dtos';
-import {
-  Encryptor,
-  ICreateUserUseCase,
-  User,
-  UserRepository,
-} from '@core/domain';
+import { Encryptor, ICreateUserUseCase, User } from '@core/domain';
 import { BadRequestException, Injectable } from '@nestjs/common';
+import { PrismaService } from '@prismaOrm/prisma.service';
 
 @Injectable()
 export class CreateUserUseCase implements ICreateUserUseCase {
   private readonly ENCRYPT_SALTS = 10;
 
   constructor(
-    private readonly userRepository: UserRepository,
+    private readonly prismaService: PrismaService,
     private readonly encryptor: Encryptor,
   ) {}
 
   async execute(dto: CreateUserDto): Promise<User> {
-    const userAlreadyExists = await this.userRepository.findOne({
-      email: dto.email,
+    const userAlreadyExists = await this.prismaService.user.findUnique({
+      where: { email: dto.email },
     });
 
     if (userAlreadyExists) {
@@ -32,9 +28,11 @@ export class CreateUserUseCase implements ICreateUserUseCase {
 
     delete dto.password;
 
-    const createdUser = await this.userRepository.create({
-      ...dto,
-      passwordHash: encryptedPassword,
+    const createdUser = await this.prismaService.user.create({
+      data: {
+        ...dto,
+        passwordHash: encryptedPassword,
+      },
     });
 
     delete createdUser.passwordHash;

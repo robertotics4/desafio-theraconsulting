@@ -1,26 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { UnauthorizedException } from '@nestjs/common';
-import {
-  UserRepository,
-  Encryptor,
-  JWT,
-  ISignInUseCase,
-  SignInData,
-} from '@core/domain';
+import { Encryptor, JWT, ISignInUseCase, SignInData } from '@core/domain';
 import { SignInDto } from '@app/auth/dtos';
+import { PrismaService } from '@prismaOrm/prisma.service';
 
 @Injectable()
 export class SignInUseCase implements ISignInUseCase {
   private readonly AUTHENTICATION_ERROR_MESSAGE = 'Usuário ou senha inválidos';
 
   constructor(
-    private readonly userRepository: UserRepository,
+    private readonly prismaService: PrismaService,
     private readonly encryptor: Encryptor,
     private readonly jwt: JWT,
   ) {}
 
   async execute(dto: SignInDto): Promise<SignInData> {
-    const user = await this.userRepository.findOne({ email: dto.email });
+    const user = await this.prismaService.user.findUnique({
+      where: { email: dto.email },
+    });
 
     if (!user) {
       throw new UnauthorizedException(this.AUTHENTICATION_ERROR_MESSAGE);

@@ -1,12 +1,26 @@
+enum ProductCategory {
+  ELETRONICOS
+  ROUPAS
+  ELETRODOMESTICOS
+  LIVROS
+  MERCEARIA
+  BELEZA
+  ESPORTES
+  BRINQUEDOS
+  MOVEIS
+  AUTOMOTIVO
+  OUTROS
+}
+
 model Product {
-  id            String   @id @default(uuid()) @db.Uuid
-  name          String   @db.VarChar(255)
-  category      String   @unique @db.VarChar(255)
-  price         Decimal  @db.Decimal(10, 2)
-  description   String?  @db.Text
+  id            String          @id @default(uuid()) @db.Uuid
+  name          String          @db.VarChar(255)
+  category      ProductCategory @unique
+  price         Decimal         @db.Decimal(10, 2)
+  description   String?         @db.Text
   stockQuantity Int
-  createdAt     DateTime @default(now()) @db.Timestamp(6)
-  updatedAt     DateTime @updatedAt @db.Timestamp(6)
+  createdAt     DateTime        @default(now()) @db.Timestamp(6)
+  updatedAt     DateTime        @updatedAt @db.Timestamp(6)
 
   productOrder OrderProduct[]
 

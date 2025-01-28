@@ -1,9 +1,15 @@
+enum OrderStatus {
+  PENDENTE
+  CONCLUIDO
+  CANCELADO
+}
+
 model Order {
-  id         String   @id @default(uuid()) @db.Uuid
-  totalOrder Decimal  @db.Decimal(10, 2)
-  status     String   @default("PENDENTE") @db.VarChar(100)
-  createdAt  DateTime @default(now()) @db.Timestamp(6)
-  updatedAt  DateTime @updatedAt @db.Timestamp(6)
+  id         String      @id @default(uuid()) @db.Uuid
+  totalOrder Decimal     @db.Decimal(10, 2)
+  status     OrderStatus @default(PENDENTE)
+  createdAt  DateTime    @default(now()) @db.Timestamp(6)
+  updatedAt  DateTime    @updatedAt @db.Timestamp(6)
 
   products OrderProduct[]
 

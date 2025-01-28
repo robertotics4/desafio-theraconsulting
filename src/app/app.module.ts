@@ -5,21 +5,16 @@ import { UserModule } from './user/user.module';
 import { PrismaModule } from '@prismaOrm/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthGuard } from './auth/auth.guard';
-import { UserRepository } from '@core/domain';
-import { PrismaUserRepository } from '@core/infra';
+import { ProductModule } from './product/product.module';
 
 @Module({
-  imports: [PrismaModule, UserModule, AuthModule],
+  imports: [PrismaModule, UserModule, AuthModule, ProductModule],
   controllers: [AppController],
   providers: [
     AppService,
     {
       provide: 'APP_GUARD',
       useClass: AuthGuard,
-    },
-    {
-      provide: UserRepository,
-      useClass: PrismaUserRepository,
     },
   ],
 })
