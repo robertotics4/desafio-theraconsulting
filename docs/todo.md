@@ -19,7 +19,7 @@
 
 ### **2. Funcionalidades - Produtos**
 #### **Controller**
-- [ ] Criar endpoints para:
+- [x] Criar endpoints para:
   - [x] Criar um produto.
   - [x] Listar produtos.
   - [x] Editar produto.
@@ -73,9 +73,9 @@
 ---
 
 ### **6. Documentação**
-- [ ] Configurar Swagger para documentação da API:
-  - [ ] Listar endpoints.
-  - [ ] Adicionar exemplos de payload e responses.
+- [x] Configurar Swagger para documentação da API:
+  - [x] Listar endpoints.
+  - [x] Adicionar exemplos de payload e responses.
 
 ---
 
