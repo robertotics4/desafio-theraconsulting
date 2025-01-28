@@ -53,9 +53,9 @@
   - [ ] Alterar status do pedido (Pendente, Concluído, Cancelado).
 
 #### **Repository**
-- [ ] Implementar manipulação do banco:
+- [x] Implementar manipulação do banco:
   - [x] Inserção.
-  - [ ] Consulta.
+  - [x] Consulta.
 
 ---
 

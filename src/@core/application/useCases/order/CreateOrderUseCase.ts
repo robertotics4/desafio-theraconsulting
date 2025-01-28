@@ -43,32 +43,17 @@ export class CreateOrderUseCase implements ICreateOrderUseCase {
       0,
     );
 
-    const createdOrder = await this.prismaService.$transaction(async (tx) => {
-      const order = await tx.order.create({
-        data: {
-          totalOrder,
-          status: 'PENDENTE',
-          orderProducts: {
-            create: orderProducts.map(({ productId, quantity }) => ({
-              productId,
-              quantity,
-            })),
-          },
+    const createdOrder = await this.prismaService.order.create({
+      data: {
+        totalOrder,
+        status: 'PENDENTE',
+        orderProducts: {
+          create: orderProducts.map(({ productId, quantity }) => ({
+            productId,
+            quantity,
+          })),
         },
-      });
-
-      for (const { productId, quantity } of orderProducts) {
-        await tx.product.update({
-          where: { id: productId },
-          data: {
-            stockQuantity: {
-              decrement: quantity,
-            },
-          },
-        });
-      }
-
-      return order;
+      },
     });
 
     return {
