@@ -11,6 +11,7 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { CreateOrderDto } from './dtos';
 import {
+  CancelOrderUseCase,
   CompleteOrderUseCase,
   CreateOrderUseCase,
   ListOrdersUseCase,
@@ -23,6 +24,7 @@ export class OrderController {
     private readonly createOrderUseCase: CreateOrderUseCase,
     private readonly listOrdersUseCase: ListOrdersUseCase,
     private readonly completeOrderUseCase: CompleteOrderUseCase,
+    private readonly cancelOrderUseCase: CancelOrderUseCase,
   ) {}
 
   @Post()
@@ -36,8 +38,13 @@ export class OrderController {
     return await this.listOrdersUseCase.execute();
   }
 
-  @Patch(':id')
+  @Patch('/conclude/:id')
   async complete(@Param('id') id: string) {
     return await this.completeOrderUseCase.execute(id);
+  }
+
+  @Patch('/cancel/:id')
+  async cancel(@Param('id') id: string) {
+    return await this.cancelOrderUseCase.execute(id);
   }
 }

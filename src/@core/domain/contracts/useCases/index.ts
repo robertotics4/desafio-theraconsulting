@@ -7,3 +7,4 @@ export * from './IDeleteProductUseCase';
 export * from './ICreateOrderUseCase';
 export * from './IListOrdersUseCase';
 export * from './ICompleteOrderUseCase';
+export * from './ICancelOrderUseCase';
