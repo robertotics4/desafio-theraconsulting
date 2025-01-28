@@ -91,10 +91,12 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
     "moduleNameMapper": {
-      "^@core(.*)$": "<rootDir>/src/@core/$1",
-      "^@prismaOrm(.*)$": "<rootDir>/src/@prismaOrm/$1",
-      "^@app(.*)$": "<rootDir>/src/@app/$1"
-    }
+      "^@core(.*)$": "<rootDir>/@core/$1",
+      "^@prismaOrm(.*)$": "<rootDir>/prismaOrm/$1",
+      "^@app(.*)$": "<rootDir>/app/$1"
+    },
+    "passWithNoTests": true,
+    "clearMocks": true
   },
   "config": {
     "commitizen": {
