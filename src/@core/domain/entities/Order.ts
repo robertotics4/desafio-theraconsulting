@@ -1,9 +1,9 @@
 import { ProductOrder } from './ProductOrder';
 
 export enum OrderStatus {
-  PENDING = 'PENDENTE',
-  CONCLUDED = 'CONCLUÍDO',
-  CANCELED = 'CANCELED',
+  PENDENTE = 'PENDENTE',
+  CONCLUIDO = 'CONCLUIDO',
+  CANCELADO = 'CANCELADO',
 }
 
 export class Order {

@@ -1,15 +1,15 @@
 export enum ProductCategory {
-  ELETRONICOS = 'Eletrônicos',
-  ROUPAS = 'Roupas',
-  ELETRODOMESTICOS = 'Eletrodomésticos',
-  LIVROS = 'Livros',
-  MERCEARIA = 'Mercearia',
-  BELEZA = 'Beleza',
-  ESPORTES = 'Esportes',
-  BRINQUEDOS = 'Brinquedos',
-  MOVEIS = 'Móveis',
-  AUTOMOTIVO = 'Automotivo',
-  OTHER = 'Outros',
+  ELETRONICOS = 'ELETRONICOS',
+  ROUPAS = 'ROUPAS',
+  ELETRODOMESTICOS = 'ELETRODOMESTICOS',
+  LIVROS = 'LIVROS',
+  MERCEARIA = 'MERCEARIA',
+  BELEZA = 'BELEZA',
+  ESPORTES = 'ESPORTES',
+  BRINQUEDOS = 'BRINQUEDOS',
+  MOVEIS = 'MOVEIS',
+  AUTOMOTIVO = 'AUTOMOTIVO',
+  OUTROS = 'OUTROS',
 }
 
 export class Product {
