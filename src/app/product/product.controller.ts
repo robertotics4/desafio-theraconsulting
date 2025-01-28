@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
@@ -9,9 +10,9 @@ import {
   Put,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { Public } from '@app/auth/decorators/public.decorator';
 import {
   CreateProductUseCase,
+  DeleteProductUseCase,
   ListProductsUseCase,
   UpdateProductUseCase,
 } from '@core/application';
@@ -24,6 +25,7 @@ export class ProductController {
     private readonly createProductUseCase: CreateProductUseCase,
     private readonly listProductsUseCase: ListProductsUseCase,
     private readonly updateProductUseCase: UpdateProductUseCase,
+    private readonly deleteProductUseCase: DeleteProductUseCase,
   ) {}
 
   @Post()
@@ -40,5 +42,11 @@ export class ProductController {
   @Put(':id')
   async update(@Param('id') id: string, @Body() dto: CreateOrUpdateProductDto) {
     return await this.updateProductUseCase.execute(id, dto);
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async delete(@Param('id') id: string) {
+    return await this.deleteProductUseCase.execute(id);
   }
 }

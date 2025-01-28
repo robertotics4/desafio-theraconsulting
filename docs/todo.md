@@ -22,20 +22,20 @@
 - [ ] Criar endpoints para:
   - [x] Criar um produto.
   - [x] Listar produtos.
-  - [ ] Editar produto.
-  - [ ] Deletar produto.
+  - [x] Editar produto.
+  - [x] Deletar produto.
 
 #### **Service**
-- [ ] Implementar regras de negócio:
+- [x] Implementar regras de negócio:
   - [x] Validação dos campos obrigatórios.
-  - [ ] Atualizar estoque.
+  - [x] Atualizar estoque.
   
 #### **Repository**
 - [x] Implementar manipulação do banco:
   - [x] Inserção.
   - [x] Consulta.
-  - [ ] Atualização.
-  - [ ] Remoção.
+  - [x] Atualização.
+  - [x] Remoção.
 
 ---
 
