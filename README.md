@@ -24,11 +24,11 @@
 - [Testes](#testes)
 - [Swagger](#swagger)
 - [Tecnologias utilizadas](#techs)
-- [Requisitos](./REQUIREMENTS.md)
+- [Extras implementados](#extras)
 - [Autores](#autores)
 - [Agradecimentos](#agradecimentos)
 
-## 🧐 Sobre a aplicação&#x20;
+## 🧐 Sobre a aplicação <a name = "sobre"></a>
 
 O desafio consiste no desenvolvimento de uma API RESTful para o gerenciamento de pedidos e produtos. A aplicação foi construída utilizando **Node.js com NestJS**, seguindo as boas práticas de desenvolvimento, incluindo **SOLID**, **separação de camadas**, e **boas práticas de organização de código**.
 
@@ -67,7 +67,7 @@ A aplicação foi organizada na seguinte estrutura de pastas:
   - Verificar se a quantidade dos produtos está disponível em estoque.
   - Atualizar o estoque caso o pedido seja concluído.
 
-## 📄 Conhecendo o desafio&#x20;
+## 📄 Conhecendo o desafio <a name = "desafio"></a>
 
 O desafio pode ser acessado em: [Instruções do desafio](https://github.com/robertotics4/desafio-theraconsulting/blob/master/docs/desafio.docx)
 
@@ -89,7 +89,7 @@ Para instalar as dependências, execute:
 yarn install
 ```
 
-## 🎈 Como usar?&#x20;
+## 🎈 Como usar? <a name="como_usar"></a>
 
 ### Iniciar a API
 
@@ -112,7 +112,7 @@ JWT_HASH_MD5=5ef41c09829700e022099de37b96bff8
 docker-compose up --build
 ```
 
-## ✅ Testes&#x20;
+## ✅ Testes <a name = "testes"></a>
 
 Foram implementados **testes unitários** utilizando `Jest`.
 
@@ -126,7 +126,7 @@ Para verificar a cobertura de código:
 yarn test:cov
 ```
 
-## 📚 Swagger&#x20;
+## 📚 Swagger <a name = "swagger"></a>
 
 A documentação da API está disponível em:
 
@@ -136,7 +136,7 @@ http://localhost:[PORTA]/api-docs
 
 Exemplo: http://localhost:3000/api-docs
 
-## ⛏️ Tecnologias utilizadas&#x20;
+## ⛏️ Tecnologias utilizadas <a name = "techs"></a>
 
 - [NestJS](https://nestjs.com/) - Framework Node.js para aplicações escaláveis
 - [TypeScript](https://www.typescriptlang.org/) - Superset do JavaScript
@@ -145,16 +145,16 @@ Exemplo: http://localhost:3000/api-docs
 - [Prisma](https://www.prisma.io/) - ORM
 
 
-## 🔐 Extras Implementados
+## 🔐 Extras Implementados <a name = "extras"></a>
 
 - Autenticação JWT
 - Middleware para logs de requisições
 
-## ✍️ Autores&#x20;
+## ✍️ Autores <a name = "autores"></a>
 
 - [@robertotics4](https://github.com/robertotics4)
 
-## 🎉 Agradecimentos&#x20;
+## 🎉 Agradecimentos <a name = "agradecimentos"></a>
 
 Agradeço à equipe da Thera Consulting pela oportunidade de participar deste desafio técnico. Foi uma excelente experiência!
 
