@@ -104,5 +104,5 @@
 - [ ] Garantir que o README.md contenha:
   - [ ] Instruções para rodar a aplicação.
   - [ ] Exemplos de uso da API.
-- [ ] Subir o código para o repositório (ex.: GitHub).
-- [ ] Testar a aplicação em ambiente Docker.
+- [x] Subir o código para o repositório (ex.: GitHub).
+- [x] Testar a aplicação em ambiente Docker.
