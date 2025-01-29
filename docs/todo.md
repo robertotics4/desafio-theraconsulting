@@ -46,7 +46,7 @@
   - [x] Listar pedidos.
 
 #### **Service**
-- [ ] Implementar regras de negócio:
+- [x] Implementar regras de negócio:
   - [x] Calcular `total_pedido`.
   - [x] Verificar disponibilidade no estoque.
   - [x] Atualizar o estoque após conclusão do pedido.
@@ -87,15 +87,15 @@
 ---
 
 ## 🧪 Testes
-- [ ] Escrever testes unitários:
-  - [ ] Testar Service de Produtos.
-  - [ ] Testar Service de Pedidos.
+- [x] Escrever testes unitários:
+  - [x] Testar Service de Produtos.
+  - [x] Testar Service de Pedidos.
 
 ---
 
 ## 🛠️ Refinamento
 - [x] Revisar o código para aderência aos princípios do SOLID.
-- [ ] Testar manualmente todas as funcionalidades da API.
+- [x] Testar manualmente todas as funcionalidades da API.
 - [x] Melhorar mensagens de erro e validações.
 
 ---
