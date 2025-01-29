@@ -113,10 +113,20 @@ describe('CreateOrderUseCase', () => {
   });
 
   it('should create a order', async () => {
+    const totalOrder = dto.orderProducts.reduce(
+      (total, { productId, quantity }) => {
+        const product = fakeProducts.find((p) => p.id === productId)!;
+        return total + product.price.toNumber() * quantity;
+      },
+      0,
+    );
+
     const result = await sut.execute(dto);
 
     expect(result).toHaveProperty('id');
     expect(result.id).not.toBe(null);
+    expect(result.status).toBe('PENDENTE');
+    expect(result.totalOrder).toBe(totalOrder);
   });
 
   it('should throw if products not exists', async () => {
