@@ -71,7 +71,7 @@ A aplicação foi organizada na seguinte estrutura de pastas:
 
 O desafio pode ser acessado em: [Instruções do desafio](https://github.com/robertotics4/desafio-theraconsulting/blob/master/docs/desafio.docx)
 
-## 🏁 Por onde começar?&#x20;
+## 🏁 Por onde começar? <a name = "inicio"></a>
 
 A aplicação foi desenvolvida com **NestJS**, utilizando **TypeScript** e um **banco de dados relacional**.
 
